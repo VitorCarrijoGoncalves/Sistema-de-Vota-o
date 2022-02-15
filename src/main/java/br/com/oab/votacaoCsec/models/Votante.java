@@ -1,10 +1,6 @@
 package br.com.oab.votacaoCsec.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.danielfariati.annotation.CPF;
 import com.sun.istack.NotNull;
@@ -35,6 +31,11 @@ public class Votante {
 
 	@NotNull
 	private String voto;
+
+//	@ManyToOne
+//	@JoinColumn(name = "id_sessao")
+//	@NotNull
+//	private Sessao idSessao;
 
 	public Long getId() {
 		return id;

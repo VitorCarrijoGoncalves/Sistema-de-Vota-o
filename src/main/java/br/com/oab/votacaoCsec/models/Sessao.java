@@ -3,12 +3,7 @@ package br.com.oab.votacaoCsec.models;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
@@ -30,8 +25,7 @@ public class Sessao {
 	
 	@NotNull
 	private String tema;
-	
-	@NotNull
+
 	private Long numeroProcesso;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
@@ -39,19 +33,21 @@ public class Sessao {
 
 	@NotNull
 	private String pautaFinal;
-	
-	@NotNull
+
 	private String enderecoSessao;
-	
-	@NotNull
+
 	private String linkSessao;
 	
-	@NotNull
-	private List<Votante> listaVotantes;
+	//@NotNull
+	//private List<Votante> listaVotantes;
 	
+//	@NotNull
+//	@OneToMany
+//	private List<String> opcoesVoto;
+
 	@NotNull
-	@ManyToOne
-	private List<String> opcoesVoto;
+	@OneToOne
+	private OpcoesVoto idOpcaoVoto;
 	
 	@NotNull
 	private StatusSessaoEnum statusSessao;
@@ -120,22 +116,6 @@ public class Sessao {
 		this.linkSessao = linkSessao;
 	}
 
-	public List<Votante> getListaVotantes() {
-		return listaVotantes;
-	}
-
-	public void setListaVotantes(List<Votante> listaVotantes) {
-		this.listaVotantes = listaVotantes;
-	}
-
-	public List<String> getOpcoesVoto() {
-		return opcoesVoto;
-	}
-
-	public void setOpcoesVoto(List<String> opcoesVoto) {
-		this.opcoesVoto = opcoesVoto;
-	}
-
 	public StatusSessaoEnum getStatusSessao() {
 		return statusSessao;
 	}
@@ -143,5 +123,12 @@ public class Sessao {
 	public void setStatusSessao(StatusSessaoEnum statusSessao) {
 		this.statusSessao = statusSessao;
 	}
-	
+
+	public OpcoesVoto getIdOpcaoVoto() {
+		return idOpcaoVoto;
+	}
+
+	public void setIdOpcaoVoto(OpcoesVoto idOpcaoVoto) {
+		this.idOpcaoVoto = idOpcaoVoto;
+	}
 }
