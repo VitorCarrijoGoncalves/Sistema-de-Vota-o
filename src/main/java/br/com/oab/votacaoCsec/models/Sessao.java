@@ -1,7 +1,6 @@
 package br.com.oab.votacaoCsec.models;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import javax.persistence.*;
 
@@ -9,47 +8,47 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.istack.NotNull;
 
 import br.com.oab.votacaoCsec.enums.StatusSessaoEnum;
-//import lombok.Getter;
-//import lombok.Setter;
 
 @Entity
-@Table(name = "Sessao")
+@Table(name = "sessao")
 public class Sessao {
 	
 	@Id 
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
 	private Long id;
 	
 	@NotNull
+	@Column(name = "pauta_inicial")
 	private String pautaInicial;
 	
 	@NotNull
+	@Column(name = "tema")
 	private String tema;
 
+	@Column(name = "numero_processo")
 	private Long numeroProcesso;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	@Column(name = "data_sessao")
 	private LocalDate dataSessao;
 
 	@NotNull
+	@Column(name = "pauta_final")
 	private String pautaFinal;
 
+	@Column(name = "endereco_sessao")
 	private String enderecoSessao;
 
+	@Column(name = "link_sessao")
 	private String linkSessao;
-	
-	//@NotNull
-	//private List<Votante> listaVotantes;
-	
-//	@NotNull
-//	@OneToMany
-//	private List<String> opcoesVoto;
 
 	@NotNull
-	@OneToOne
-	private OpcoesVoto idOpcaoVoto;
+	@ManyToOne
+	private GrupoOpcoesVoto idGrupoOpcoesVoto;
 	
 	@NotNull
+	@Column(name = "status_sessao")
 	private StatusSessaoEnum statusSessao;
 
 	public Long getId() {
@@ -124,11 +123,6 @@ public class Sessao {
 		this.statusSessao = statusSessao;
 	}
 
-	public OpcoesVoto getIdOpcaoVoto() {
-		return idOpcaoVoto;
-	}
 
-	public void setIdOpcaoVoto(OpcoesVoto idOpcaoVoto) {
-		this.idOpcaoVoto = idOpcaoVoto;
-	}
+
 }

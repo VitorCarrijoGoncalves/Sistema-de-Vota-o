@@ -9,33 +9,34 @@ import com.sun.istack.NotNull;
 //import lombok.Setter;
 
 @Entity
-@Table(name = "Votante")
+@Table(name = "votante")
 public class Votante {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
 	private Long id;
 
 	@NotNull
+	@Column(name = "nome")
 	private String nome;
 
 	@NotNull
+	@Column(name = "login")
 	private String login;
 
 	@NotNull
+	@Column(name = "senha")
 	private String senha;
 	
 	@NotNull
 	@CPF(required = true, message = "CPF inválido")
+	@Column(name = "cpf")
 	private String cpf;
 
 	@NotNull
-	private String voto;
-
-//	@ManyToOne
-//	@JoinColumn(name = "id_sessao")
-//	@NotNull
-//	private Sessao idSessao;
+	@ManyToOne
+	private OpcaoVoto voto;
 
 	public Long getId() {
 		return id;
@@ -77,12 +78,11 @@ public class Votante {
 		this.cpf = cpf;
 	}
 
-	public String getVoto() {
+	public OpcaoVoto getVoto() {
 		return voto;
 	}
 
-	public void setVoto(String voto) {
+	public void setVoto(OpcaoVoto voto) {
 		this.voto = voto;
 	}
-	
 }

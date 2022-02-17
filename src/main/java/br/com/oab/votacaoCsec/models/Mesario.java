@@ -6,30 +6,37 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import javax.persistence.*;
+
 import com.danielfariati.annotation.CPF;
 import com.sun.istack.NotNull;
 //import lombok.Getter;
 //import lombok.Setter;
 
 @Entity
-@Table(name = "Mesario")
+@Table(name = "mesario")
 public class Mesario {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
 	private Long id;
 
 	@NotNull
+	@Column(name = "nome")
 	private String nome;
 	
 	@NotNull
 	@CPF(required = true, message = "CPF inválido")
+	@Column(name = "cpf")
 	private String cpf;
 
 	@NotNull
+	@Column(name = "login")
 	private String login;
 
 	@NotNull
+	@Column(name = "senha")
 	private String senha;
 
 	public Long getId() {
