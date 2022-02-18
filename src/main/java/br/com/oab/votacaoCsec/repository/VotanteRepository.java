@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.com.oab.votacaoCsec.models.Votante;
 
-public interface EleitorRepository extends JpaRepository<Votante, Long> {
+public interface VotanteRepository extends JpaRepository<Votante, Long> {
 
 }

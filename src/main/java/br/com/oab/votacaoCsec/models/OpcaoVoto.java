@@ -13,7 +13,7 @@ public class OpcaoVoto {
     private long id;
 
     @ManyToOne
-    private GrupoOpcoesVoto idGrupoOpcoesVoto;
+    private OpcoesVoto idOpcoesVoto;
 
     @OneToMany
     private List<Votante> votantes;

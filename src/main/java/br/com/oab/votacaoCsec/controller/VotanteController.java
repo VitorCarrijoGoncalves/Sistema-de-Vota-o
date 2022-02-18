@@ -13,43 +13,43 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.oab.votacaoCsec.models.Votante;
-import br.com.oab.votacaoCsec.service.EleitorService;
+import br.com.oab.votacaoCsec.service.VotanteService;
 
 @Controller
 public class VotanteController {
 
 	@Autowired
-	EleitorService eleitorService;
+	VotanteService votanteService;
 
-	@RequestMapping(value = "/eleitores", method = RequestMethod.GET)
-	public ModelAndView getEleitores() {
-		ModelAndView mv = new ModelAndView("eleitores");
-		List<Votante> eleitores = eleitorService.findAll();
-		mv.addObject("eleitores", eleitores);
+	@RequestMapping(value = "/votantes", method = RequestMethod.GET)
+	public ModelAndView getVotantes() {
+		ModelAndView mv = new ModelAndView("votantes");
+		List<Votante> votantes = votanteService.findAll();
+		mv.addObject("votantes", votantes);
 		return mv;
 	}
 
-	@RequestMapping(value = "/eleitores/{id}", method = RequestMethod.GET)
-	public ModelAndView getEleitorDetails (@PathVariable("id") long id) {
-		ModelAndView mv = new ModelAndView("eleitorDetails");
-		Votante eleitor = eleitorService.findById(id);
-		mv.addObject("eleitor", eleitor);
+	@RequestMapping(value = "/votante/{id}", method = RequestMethod.GET)
+	public ModelAndView getVotanteDetails (@PathVariable("id") long id) {
+		ModelAndView mv = new ModelAndView("votanteDetails");
+		Votante votante = votanteService.findById(id);
+		mv.addObject("votante", votante);
 		return mv;
 	}
 
-	@RequestMapping(value = "/neweleitor", method = RequestMethod.GET)
-	public String getEleitorForm () {
-		return "eleitorForm";
+	@RequestMapping(value = "/newvotante", method = RequestMethod.GET)
+	public String getVotanteForm () {
+		return "votanteForm";
 	}
 
-	@RequestMapping(value = "/neweleitor", method = RequestMethod.POST)
-	public String saveEleitor (@Validated Votante eleitor, BindingResult result, RedirectAttributes attributes) {
+	@RequestMapping(value = "/newvotante", method = RequestMethod.POST)
+	public String saveEleitor (@Validated Votante votante, BindingResult result, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
 			return "redirect:/neweleitor";
 		}
 
-		eleitorService.save(eleitor);
-		return "redirect:/eleitores";
+		votanteService.save(votante);
+		return "redirect:/votantes";
 
 	}
 

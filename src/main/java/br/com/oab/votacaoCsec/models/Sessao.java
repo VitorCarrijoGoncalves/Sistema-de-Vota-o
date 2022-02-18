@@ -45,7 +45,7 @@ public class Sessao {
 
 	@NotNull
 	@ManyToOne
-	private GrupoOpcoesVoto idGrupoOpcoesVoto;
+	private OpcoesVoto idOpcoesVoto;
 	
 	@NotNull
 	@Column(name = "status_sessao")

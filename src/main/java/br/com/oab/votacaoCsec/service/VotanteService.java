@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.oab.votacaoCsec.models.Votante;
 
-public interface EleitorService {
+public interface VotanteService {
 	
 	List<Votante> findAll();
 	
