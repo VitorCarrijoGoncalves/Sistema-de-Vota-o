@@ -13,10 +13,10 @@ public class OpcoesVoto {
     private long id;
 
     @OneToMany
-    private List<Sessao> sessoes;
+    private List<Sessao> listSessao;
 
     @OneToMany
-    private List<OpcaoVoto> opcoesVoto;
+    private List<OpcaoVoto> listOpcaoVoto;
 
     public long getId() {
         return id;
@@ -26,19 +26,19 @@ public class OpcoesVoto {
         this.id = id;
     }
 
-    public List<Sessao> getSessoes() {
-        return sessoes;
+    public List<Sessao> getListSessao() {
+        return listSessao;
     }
 
-    public void setSessoes(List<Sessao> sessoes) {
-        this.sessoes = sessoes;
+    public void setListSessao(List<Sessao> listSessao) {
+        this.listSessao = listSessao;
     }
 
-    public List<OpcaoVoto> getOpcoesVoto() {
-        return opcoesVoto;
+    public List<OpcaoVoto> getListOpcaoVoto() {
+        return listOpcaoVoto;
     }
 
-    public void setOpcoesVoto(List<OpcaoVoto> opcoesVoto) {
-        this.opcoesVoto = opcoesVoto;
+    public void setListOpcaoVoto(List<OpcaoVoto> listOpcaoVoto) {
+        this.listOpcaoVoto = listOpcaoVoto;
     }
 }

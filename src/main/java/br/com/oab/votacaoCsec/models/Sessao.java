@@ -37,11 +37,9 @@ public class Sessao {
 	@Column(name = "pauta_final")
 	private String pautaFinal;
 
+	/* Endereço da sessão pode ser um link de um reunião caso esta seja online */
 	@Column(name = "endereco_sessao")
 	private String enderecoSessao;
-
-	@Column(name = "link_sessao")
-	private String linkSessao;
 
 	@NotNull
 	@ManyToOne
@@ -107,14 +105,6 @@ public class Sessao {
 		this.enderecoSessao = enderecoSessao;
 	}
 
-	public String getLinkSessao() {
-		return linkSessao;
-	}
-
-	public void setLinkSessao(String linkSessao) {
-		this.linkSessao = linkSessao;
-	}
-
 	public StatusSessaoEnum getStatusSessao() {
 		return statusSessao;
 	}
@@ -122,7 +112,4 @@ public class Sessao {
 	public void setStatusSessao(StatusSessaoEnum statusSessao) {
 		this.statusSessao = statusSessao;
 	}
-
-
-
 }

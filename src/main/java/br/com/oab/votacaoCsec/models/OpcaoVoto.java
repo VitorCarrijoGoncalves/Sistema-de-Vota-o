@@ -16,9 +16,40 @@ public class OpcaoVoto {
     private OpcoesVoto idOpcoesVoto;
 
     @OneToMany
-    private List<Votante> votantes;
+    private List<Votante> listVotante;
 
     @Column(name = "nome_opcao")
     private String nomeOpcao;
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public OpcoesVoto getIdOpcoesVoto() {
+        return idOpcoesVoto;
+    }
+
+    public void setIdOpcoesVoto(OpcoesVoto idOpcoesVoto) {
+        this.idOpcoesVoto = idOpcoesVoto;
+    }
+
+    public List<Votante> getListVotante() {
+        return listVotante;
+    }
+
+    public void setListVotante(List<Votante> listVotante) {
+        this.listVotante = listVotante;
+    }
+
+    public String getNomeOpcao() {
+        return nomeOpcao;
+    }
+
+    public void setNomeOpcao(String nomeOpcao) {
+        this.nomeOpcao = nomeOpcao;
+    }
 }

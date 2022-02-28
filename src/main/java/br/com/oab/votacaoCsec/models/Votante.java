@@ -36,7 +36,7 @@ public class Votante {
 
 	@NotNull
 	@ManyToOne
-	private OpcaoVoto voto;
+	private OpcaoVoto idOpcaoVoto;
 
 	public Long getId() {
 		return id;
@@ -78,11 +78,11 @@ public class Votante {
 		this.cpf = cpf;
 	}
 
-	public OpcaoVoto getVoto() {
-		return voto;
+	public OpcaoVoto getIdOpcaoVoto() {
+		return idOpcaoVoto;
 	}
 
-	public void setVoto(OpcaoVoto voto) {
-		this.voto = voto;
+	public void setIdOpcaoVoto(OpcaoVoto idOpcaoVoto) {
+		this.idOpcaoVoto = idOpcaoVoto;
 	}
 }

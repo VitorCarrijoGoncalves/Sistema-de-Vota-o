@@ -30,4 +30,9 @@ public class SessaoServiceImpl implements SessaoService {
 		return sessaoRepository.save(sessao);
 	}
 
+	@Override
+	public Sessao update(Sessao sessao) {
+		return sessaoRepository.saveAndFlush(sessao);
+	}
+
 }

@@ -12,6 +12,6 @@ public interface SessaoService {
 	
 	Sessao save (Sessao sessao);
 	
-	
+	Sessao update (Sessao sessao);
 
 }

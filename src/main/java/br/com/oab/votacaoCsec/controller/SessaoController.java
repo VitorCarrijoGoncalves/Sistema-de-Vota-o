@@ -3,6 +3,7 @@ package br.com.oab.votacaoCsec.controller;
 import java.time.LocalDate;
 import java.util.List;
 
+import br.com.oab.votacaoCsec.enums.StatusSessaoEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -50,11 +51,30 @@ public class SessaoController {
 					"foram preenchidos");
 			return "redirect:/newsessao";
 		}
-		
-		sessao.setDataSessao(LocalDate.now());
+
+		sessao.setStatusSessao(StatusSessaoEnum.AINICIAR);
 		sessaoService.save(sessao);
 		return "redirect:/sessoes";
 		
+	}
+
+	@RequestMapping(value = "/iniciar-sessao", method = RequestMethod.GET)
+	public String getIniciarSessaoForm () {
+		return "inicio-sessao";
+	}
+
+	@RequestMapping(value = "/iniciar-sessao", method = RequestMethod.POST)
+	public String iniciarSessao (Long idSessao, BindingResult result, RedirectAttributes attributes) {
+		if (result.hasErrors()) {
+
+			Sessao sessao = sessaoService.findById(idSessao);
+			sessao.setDataSessao(LocalDate.now());
+			sessao.setStatusSessao(StatusSessaoEnum.EMANDAMENTO);
+			sessaoService.update(sessao);
+		}
+
+		return "redirect:/sessoes";
+
 	}
 	
 }
