@@ -1,17 +1,15 @@
 package br.com.oab.votacaoCsec.service.impl;
 
-import java.time.LocalDate;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import br.com.oab.votacaoCsec.models.Sessao;
 import br.com.oab.votacaoCsec.repository.SessaoRepository;
 import br.com.oab.votacaoCsec.service.SessaoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
-public class SessaoServiceImpl implements SessaoService {
+public class OpcaoVotoServiceImpl implements SessaoService {
 	
 	@Autowired
 	SessaoRepository sessaoRepository;
@@ -34,24 +32,6 @@ public class SessaoServiceImpl implements SessaoService {
 	@Override
 	public Sessao update(Sessao sessao) {
 		return sessaoRepository.saveAndFlush(sessao);
-	}
-
-	@Override
-	public boolean dataSessaoCoincideComOutraSessao(LocalDate dataSessao) {
-
-		// Buscar sessão por data
-		Sessao sessao = sessaoRepository.findByDataSessao(dataSessao);
-
-		if (sessao != null) {
-			if (dataSessao == sessao.getDataSessao()) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-
-		return false;
-
 	}
 
 }

@@ -45,7 +45,7 @@ public class VotanteController {
 	@RequestMapping(value = "/newvotante", method = RequestMethod.POST)
 	public String saveEleitor (@Validated Votante votante, BindingResult result, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
-			return "redirect:/neweleitor";
+			return "redirect:/newvotante";
 		}
 
 		votanteService.save(votante);
