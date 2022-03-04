@@ -17,4 +17,6 @@ public interface SessaoService {
 
 	boolean dataSessaoCoincideComOutraSessao(LocalDate dataSessao);
 
+	boolean validarTemaSessaoNaoERepetido(String tema);
+
 }

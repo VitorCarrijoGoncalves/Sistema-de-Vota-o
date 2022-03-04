@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 import br.com.oab.votacaoCsec.enums.StatusSessaoEnum;
+import br.com.oab.votacaoCsec.models.OpcaoVoto;
+import br.com.oab.votacaoCsec.models.OpcoesVoto;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -45,12 +48,28 @@ public class SessaoController {
 	}
 	
 	@RequestMapping(value = "/newsessao", method = RequestMethod.POST)
-	public String saveSessao (@Validated Sessao sessao, BindingResult result, RedirectAttributes attributes) {
+	public String saveSessao (@Validated Sessao sessao, List<OpcaoVoto> opcaoVotoList, BindingResult result, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique se os campos obrigatórios " +
 					"foram preenchidos");
 			return "redirect:/newsessao";
 		}
+
+		if (sessaoService.dataSessaoCoincideComOutraSessao(sessao.getDataSessao())) {
+			attributes.addFlashAttribute("mensagem", "Já há uma sessão marcada para esta data");
+			sessao.setDataSessao(LocalDate.now());
+			return "redirect:/newsessao";
+		}
+
+		if (sessaoService.validarTemaSessaoNaoERepetido(sessao.getTema())) {
+			attributes.addFlashAttribute("mensagem", "Já há um tema definido para outra sessão");
+			sessao.setDataSessao(LocalDate.now());
+			return "redirect:/newsessao";
+		}
+
+		OpcoesVoto opcoesVoto = new OpcoesVoto();
+		opcoesVoto.setListOpcaoVoto(opcaoVotoList);
+		sessao.setIdOpcoesVoto(opcoesVoto);
 
 		sessao.setStatusSessao(StatusSessaoEnum.AINICIAR);
 		sessaoService.save(sessao);
@@ -66,12 +85,21 @@ public class SessaoController {
 	@RequestMapping(value = "/iniciar-sessao", method = RequestMethod.POST)
 	public String iniciarSessao (Long idSessao, BindingResult result, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
-
-			Sessao sessao = sessaoService.findById(idSessao);
-			sessao.setDataSessao(LocalDate.now());
-			sessao.setStatusSessao(StatusSessaoEnum.EMANDAMENTO);
-			sessaoService.update(sessao);
+			attributes.addFlashAttribute("mensagem", "Verifique se os campos obrigatórios " +
+					"foram preenchidos");
+			return "redirect:/newsessao";
 		}
+
+		Sessao sessao = sessaoService.findById(idSessao);
+
+		if (sessaoService.dataSessaoCoincideComOutraSessao(LocalDate.now())) {
+			attributes.addFlashAttribute("mensagem", "Já há uma sessão marcada para esta data");
+			sessao.setDataSessao(LocalDate.now());
+			return "redirect:/newsessao";
+		}
+
+		sessao.setStatusSessao(StatusSessaoEnum.EMANDAMENTO);
+		sessaoService.update(sessao);
 
 		return "redirect:/sessoes";
 

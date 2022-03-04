@@ -105,6 +105,14 @@ public class Sessao {
 		this.enderecoSessao = enderecoSessao;
 	}
 
+	public OpcoesVoto getIdOpcoesVoto() {
+		return idOpcoesVoto;
+	}
+
+	public void setIdOpcoesVoto(OpcoesVoto idOpcoesVoto) {
+		this.idOpcoesVoto = idOpcoesVoto;
+	}
+
 	public StatusSessaoEnum getStatusSessao() {
 		return statusSessao;
 	}

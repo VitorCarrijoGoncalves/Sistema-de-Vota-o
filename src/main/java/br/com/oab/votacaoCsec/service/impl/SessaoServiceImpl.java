@@ -54,4 +54,20 @@ public class SessaoServiceImpl implements SessaoService {
 
 	}
 
+	public boolean validarTemaSessaoNaoERepetido(String tema) {
+
+		// Buscar sessão por tema
+		Sessao sessao = sessaoRepository.findSessaoByTema(tema);
+
+		if (sessao != null) {
+			if (tema.equalsIgnoreCase(sessao.getTema())) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+
+		return false;
+	}
+
 }

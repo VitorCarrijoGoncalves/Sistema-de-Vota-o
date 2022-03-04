@@ -10,4 +10,6 @@ public interface SessaoRepository extends JpaRepository<Sessao, Long> {
 
     Sessao findByDataSessao(LocalDate dataSessao);
 
+    Sessao findSessaoByTema(String tema);
+
 }
