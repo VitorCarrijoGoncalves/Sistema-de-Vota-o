@@ -2,6 +2,8 @@ package br.com.oab.votacaoCsec.controller;
 
 import java.util.List;
 
+import br.com.oab.votacaoCsec.models.OpcaoVoto;
+import br.com.oab.votacaoCsec.models.OpcoesVoto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -43,7 +45,23 @@ public class VotanteController {
 	}
 
 	@RequestMapping(value = "/newvotante", method = RequestMethod.POST)
-	public String saveEleitor (@Validated Votante votante, BindingResult result, RedirectAttributes attributes) {
+	public String saveVotante (@Validated Votante votante, BindingResult result, RedirectAttributes attributes) {
+		if (result.hasErrors()) {
+			return "redirect:/newvotante";
+		}
+
+		votanteService.save(votante);
+		return "redirect:/votantes";
+
+	}
+
+//	@RequestMapping(value = "/votar", method = RequestMethod.GET)
+//	public String votar () {
+//		return "votar";
+//	}
+
+	@RequestMapping(value = "/votar", method = RequestMethod.POST)
+	public String votar (@Validated OpcaoVoto voto, BindingResult result, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
 			return "redirect:/newvotante";
 		}

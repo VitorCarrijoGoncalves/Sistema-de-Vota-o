@@ -48,10 +48,11 @@ public class SessaoController {
 	}
 	
 	@RequestMapping(value = "/newsessao", method = RequestMethod.POST)
-	public String saveSessao (@Validated Sessao sessao, List<OpcaoVoto> opcaoVotoList, BindingResult result, RedirectAttributes attributes) {
+	public String saveSessao (@Validated Sessao sessao, BindingResult result, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique se os campos obrigatórios " +
 					"foram preenchidos");
+
 			return "redirect:/newsessao";
 		}
 
@@ -68,7 +69,6 @@ public class SessaoController {
 		}
 
 		OpcoesVoto opcoesVoto = new OpcoesVoto();
-		opcoesVoto.setListOpcaoVoto(opcaoVotoList);
 		sessao.setIdOpcoesVoto(opcoesVoto);
 
 		sessao.setStatusSessao(StatusSessaoEnum.AINICIAR);
