@@ -30,4 +30,13 @@ public class VotanteServiceImpl implements VotanteService {
 		return votanteRepository.save(votante);
 	}
 
+	@Override
+	public boolean isVotanteNovo(Votante votante) {
+		if (votanteRepository.findByCpf(votante.getCpf()) != null) {
+			return false;
+		}
+
+		return true;
+	}
+
 }

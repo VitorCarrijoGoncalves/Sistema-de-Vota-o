@@ -4,6 +4,7 @@ import java.util.List;
 
 import br.com.oab.votacaoCsec.models.OpcaoVoto;
 import br.com.oab.votacaoCsec.models.OpcoesVoto;
+import br.com.oab.votacaoCsec.service.OpcaoVotoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -22,6 +23,9 @@ public class VotanteController {
 
 	@Autowired
 	VotanteService votanteService;
+
+	@Autowired
+	OpcaoVotoService opcaoVotoService;
 
 	@RequestMapping(value = "/votantes", method = RequestMethod.GET)
 	public ModelAndView getVotantes() {
@@ -66,7 +70,7 @@ public class VotanteController {
 			return "redirect:/newvotante";
 		}
 
-		votanteService.save(votante);
+		opcaoVotoService.save(voto);
 		return "redirect:/votantes";
 
 	}

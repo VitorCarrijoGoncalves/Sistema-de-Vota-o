@@ -41,6 +41,8 @@ public class OpcoesVotoServiceImpl implements OpcoesVotoService {
 			return null;
 		}
 
+		return opcoesVotoRepository.saveAndFlush(opcoesVoto);
+
 	}
 
 	public boolean isListaOpcaoVotoContemElementosTabelaOpcaoVoto(OpcoesVoto opcoesVoto) {

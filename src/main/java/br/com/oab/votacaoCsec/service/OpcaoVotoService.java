@@ -1,6 +1,5 @@
 package br.com.oab.votacaoCsec.service;
 
-import br.com.oab.votacaoCsec.models.Mesario;
 import br.com.oab.votacaoCsec.models.OpcaoVoto;
 
 import java.util.List;

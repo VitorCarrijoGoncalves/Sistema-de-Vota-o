@@ -15,7 +15,7 @@ import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "mesario")
-public class Mesario {
+public class Fiscal {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

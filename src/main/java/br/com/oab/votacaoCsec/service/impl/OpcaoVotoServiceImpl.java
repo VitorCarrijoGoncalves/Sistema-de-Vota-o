@@ -1,37 +1,35 @@
 package br.com.oab.votacaoCsec.service.impl;
 
+import br.com.oab.votacaoCsec.models.OpcaoVoto;
 import br.com.oab.votacaoCsec.models.Sessao;
+import br.com.oab.votacaoCsec.repository.OpcaoVotoRepository;
 import br.com.oab.votacaoCsec.repository.SessaoRepository;
+import br.com.oab.votacaoCsec.service.OpcaoVotoService;
 import br.com.oab.votacaoCsec.service.SessaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
-public class OpcaoVotoServiceImpl implements SessaoService {
+public class OpcaoVotoServiceImpl implements OpcaoVotoService {
 	
 	@Autowired
-	SessaoRepository sessaoRepository;
+	OpcaoVotoRepository opcaoVotoRepository;
 
 	@Override
-	public List<Sessao> findAll() {
-		return sessaoRepository.findAll();
+	public List<OpcaoVoto> findAll() {
+		return opcaoVotoRepository.findAll();
 	}
 
 	@Override
-	public Sessao findById(long id) {
-		return sessaoRepository.findById(id).get();
+	public OpcaoVoto findById(long id) {
+		return opcaoVotoRepository.findById(id).get();
 	}
 
 	@Override
-	public Sessao save(Sessao sessao) {
-		return sessaoRepository.save(sessao);
+	public OpcaoVoto save(OpcaoVoto opcaoVoto) {
+		return opcaoVotoRepository.saveAndFlush(opcaoVoto);
 	}
-
-	@Override
-	public Sessao update(Sessao sessao) {
-		return sessaoRepository.saveAndFlush(sessao);
-	}
-
 }

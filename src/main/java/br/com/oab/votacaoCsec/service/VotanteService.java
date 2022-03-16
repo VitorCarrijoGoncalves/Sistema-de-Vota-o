@@ -10,6 +10,8 @@ public interface VotanteService {
 	
 	Votante findById (long id);
 	
-	Votante save (Votante eleitor);
+	Votante save (Votante votante);
+
+	boolean isVotanteNovo(Votante votante);
 
 }
