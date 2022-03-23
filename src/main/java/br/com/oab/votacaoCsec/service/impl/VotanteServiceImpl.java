@@ -2,6 +2,9 @@ package br.com.oab.votacaoCsec.service.impl;
 
 import java.util.List;
 
+import br.com.oab.votacaoCsec.models.OpcaoVoto;
+import br.com.oab.votacaoCsec.models.Sessao;
+import br.com.oab.votacaoCsec.repository.SessaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.oab.votacaoCsec.models.Votante;
@@ -14,6 +17,9 @@ public class VotanteServiceImpl implements VotanteService {
 
 	@Autowired
 	VotanteRepository votanteRepository;
+
+	@Autowired
+	SessaoRepository sessaoRepository;
 
 	@Override
 	public List<Votante> findAll() {
@@ -28,6 +34,17 @@ public class VotanteServiceImpl implements VotanteService {
 	@Override
 	public Votante save(Votante votante) {
 		return votanteRepository.save(votante);
+	}
+
+	@Override
+	public boolean validarVotanteJaNaoVotou(Sessao sessao, Votante votante) {
+		if (votanteRepository.findByOpcaoVotoAndVotante(sessao,votante) != null) {
+
+			return true;
+
+		}
+			return false;
+
 	}
 
 	@Override

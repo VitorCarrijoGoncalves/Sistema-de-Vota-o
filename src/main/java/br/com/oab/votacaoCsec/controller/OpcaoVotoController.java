@@ -35,16 +35,13 @@ public class OpcaoVotoController {
 			return "redirect:/new/opcao-voto";
 		}
 
-
-
 		opcaoVotoService.save(opcaoVoto);
 		return "redirect:/new/opcao-voto";
 		
 	}
 
-	@RequestMapping(value = "/new/opcao-voto", method = RequestMethod.POST)
+	@RequestMapping(value = "/sessao/votar", method = RequestMethod.POST)
 	public String guardarVotoVotante (@Validated OpcaoVoto opcaoVoto, BindingResult result, RedirectAttributes attributes) {
-
 
 		opcaoVotoService.save(opcaoVoto);
 		return "redirect:/new/opcao-voto";

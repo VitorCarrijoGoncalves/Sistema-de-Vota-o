@@ -29,10 +29,10 @@ public class OpcoesVotoController {
 	@Autowired
 	OpcaoVotoService opcaoVotoService;
 	
-	@RequestMapping(value = "/new/opcoes-voto", method = RequestMethod.GET)
-	public String getOpcoesVotoForm () {
-		return "opcoesVotoForm";
-	}
+//	@RequestMapping(value = "/new/opcoes-voto", method = RequestMethod.GET)
+//	public String getOpcoesVotoForm () {
+//		return "opcoesVotoForm";
+//	}
 	
 	@RequestMapping(value = "/new/opcoes-voto", method = RequestMethod.POST)
 	public String saveOpcoesVoto (@Validated OpcoesVoto opcoesVoto, BindingResult result, RedirectAttributes attributes) {

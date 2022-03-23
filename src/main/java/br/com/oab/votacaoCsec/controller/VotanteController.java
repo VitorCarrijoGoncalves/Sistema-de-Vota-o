@@ -64,15 +64,6 @@ public class VotanteController {
 //		return "votar";
 //	}
 
-	@RequestMapping(value = "/votar", method = RequestMethod.POST)
-	public String votar (@Validated OpcaoVoto voto, BindingResult result, RedirectAttributes attributes) {
-		if (result.hasErrors()) {
-			return "redirect:/newvotante";
-		}
 
-		opcaoVotoService.save(voto);
-		return "redirect:/votantes";
-
-	}
 
 }
