@@ -18,38 +18,38 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class FiscalController {
 
 	@Autowired
-	FiscalService mesarioService;
+	FiscalService fiscalService;
 
-	@RequestMapping(value = "/mesarios", method = RequestMethod.GET)
-	public ModelAndView getSessoes() {
-		ModelAndView mv = new ModelAndView("mesarios");
-		List<Fiscal> mesarios = mesarioService.findAll();
-		mv.addObject("mesarios", mesarios);
+	@RequestMapping(value = "/fiscais", method = RequestMethod.GET)
+	public ModelAndView getFiscais() {
+		ModelAndView mv = new ModelAndView("fiscais");
+		List<Fiscal> fiscais = fiscalService.findAll();
+		mv.addObject("fiscais", fiscais);
 		return mv;
 	}
 
-	@RequestMapping(value = "/mesarios/{id}", method = RequestMethod.GET)
-	public ModelAndView getSessaoDetails (@PathVariable("id") long id) {
-		ModelAndView mv = new ModelAndView("mesarioDetails");
-		Fiscal mesario = mesarioService.findById(id);
-		mv.addObject("mesario", mesario);
+	@RequestMapping(value = "/fiscais/{id}", method = RequestMethod.GET)
+	public ModelAndView getFiscalDetails (@PathVariable("id") long id) {
+		ModelAndView mv = new ModelAndView("fiscalDetails");
+		Fiscal fiscal = fiscalService.findById(id);
+		mv.addObject("fiscal", fiscal);
 		return mv;
 	}
 
-	@RequestMapping(value = "/newmesario", method = RequestMethod.GET)
-	public String getMesarioForm () {
-		return "mesarioForm";
+	@RequestMapping(value = "/newfiscal", method = RequestMethod.GET)
+	public String getFiscalForm () {
+		return "fiscalForm";
 	}
 
-	@RequestMapping(value = "/newmesario", method = RequestMethod.POST)
-	public String saveMesario (@Validated Fiscal mesario, BindingResult result, RedirectAttributes attributes) {
+	@RequestMapping(value = "/newfiscal", method = RequestMethod.POST)
+	public String saveFiscal (@Validated Fiscal fiscal, BindingResult result, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
-			return "redirect:/newmesario";
+			return "redirect:/newfiscal";
 		}
 
 //		sessao.setDataSessao(LocalDate.now());
-		mesarioService.save(mesario);
-		return "redirect:/mesarios";
+		fiscalService.save(fiscal);
+		return "redirect:/fiscais";
 
 	}
 

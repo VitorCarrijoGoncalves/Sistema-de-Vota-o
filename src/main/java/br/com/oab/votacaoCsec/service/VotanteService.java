@@ -14,7 +14,7 @@ public interface VotanteService {
 	
 	Votante save (Votante votante);
 
-	boolean validarVotanteJaNaoVotou(Sessao sessao);
+	boolean validarVotanteJaNaoVotou(Sessao sessao,Votante votante);
 
 	boolean isVotanteNovo(Votante votante);
 

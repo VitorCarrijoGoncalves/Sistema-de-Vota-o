@@ -49,6 +49,10 @@ public class Sessao {
 	@Column(name = "status_sessao")
 	private StatusSessaoEnum statusSessao;
 
+	@javax.validation.constraints.NotNull
+	@Column(name = "sessao_com_apenas_um_voto")
+	private boolean sessaoComApenasUmVoto;
+
 	public Long getId() {
 		return id;
 	}
@@ -119,5 +123,13 @@ public class Sessao {
 
 	public void setStatusSessao(StatusSessaoEnum statusSessao) {
 		this.statusSessao = statusSessao;
+	}
+
+	public boolean isSessaoComApenasUmVoto() {
+		return sessaoComApenasUmVoto;
+	}
+
+	public void setSessaoComApenasUmVoto(boolean sessaoComApenasUmVoto) {
+		this.sessaoComApenasUmVoto = sessaoComApenasUmVoto;
 	}
 }

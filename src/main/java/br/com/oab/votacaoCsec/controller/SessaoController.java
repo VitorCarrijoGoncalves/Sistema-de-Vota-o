@@ -14,6 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -104,5 +105,15 @@ public class SessaoController {
 		return "redirect:/sessoes";
 
 	}
+
+	/* Método criado para que quando o votante autenticar no sistema, e clicar na opção de 'Sessao', ele possa
+	* ser redirecionado para uma página, onde ele possa ver as sessões dele disponíveis para ele votar e também
+	* um histórico de sessões que ele já votou. */
+	@RequestMapping(value = "/sessao/votante", method = RequestMethod.POST)
+	public String getSessaoVotante (@Validated Sessao sessao, @RequestParam Long idVotante) {
+
+		return "redirect:/sessoesVotante";
+	}
+
 	
 }
