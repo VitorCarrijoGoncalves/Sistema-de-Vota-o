@@ -18,6 +18,9 @@ public class OpcaoVoto {
     @OneToMany
     private List<Votante> listVotante;
 
+    @ManyToMany
+    private List<Sessao> listSessao;
+
     @Column(name = "nome_opcao")
     private String nomeOpcao;
 

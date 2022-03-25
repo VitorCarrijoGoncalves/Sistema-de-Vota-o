@@ -115,5 +115,13 @@ public class SessaoController {
 		return "redirect:/sessoesVotante";
 	}
 
-	
+	/* Método que pega o resultado final de cada sessão, quantos votos teve cada opção desta sessão,
+	* horário de início e de encerramento da mesma.
+	* SELECT * FROM sessao s
+	* LEFT JOIN opcoes_voto_list_opcao_voto ovlov ON ovlov.id = s.id_opcoes_voto_id
+	* WHERE status_sessao = 'FINALIZADA' */
+	public String getResultadoFinalSessao() {
+		return null;
+	}
+
 }

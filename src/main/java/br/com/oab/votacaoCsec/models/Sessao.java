@@ -1,6 +1,7 @@
 package br.com.oab.votacaoCsec.models;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -52,6 +53,9 @@ public class Sessao {
 	@javax.validation.constraints.NotNull
 	@Column(name = "sessao_com_apenas_um_voto")
 	private boolean sessaoComApenasUmVoto;
+
+	@ManyToMany
+	private List<OpcaoVoto> listOpcaoVoto;
 
 	public Long getId() {
 		return id;
