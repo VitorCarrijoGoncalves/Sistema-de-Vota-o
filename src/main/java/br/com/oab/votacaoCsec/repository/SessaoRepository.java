@@ -5,9 +5,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.com.oab.votacaoCsec.models.Sessao;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 
+@Repository
 public interface SessaoRepository extends JpaRepository<Sessao, Long> {
 
     Sessao findByDataSessao(LocalDate dataSessao);

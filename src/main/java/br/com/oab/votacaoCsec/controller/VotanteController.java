@@ -4,6 +4,9 @@ import java.util.List;
 
 import br.com.oab.votacaoCsec.models.OpcaoVoto;
 import br.com.oab.votacaoCsec.models.OpcoesVoto;
+import br.com.oab.votacaoCsec.models.Sessao;
+import br.com.oab.votacaoCsec.repository.OpcaoVotoListVotanteRepository;
+import br.com.oab.votacaoCsec.service.OpcaoVotoListVotanteService;
 import br.com.oab.votacaoCsec.service.OpcaoVotoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +28,7 @@ public class VotanteController {
 	VotanteService votanteService;
 
 	@Autowired
-	OpcaoVotoService opcaoVotoService;
+	OpcaoVotoListVotanteService opcaoVotoListVotanteService;
 
 	@RequestMapping(value = "/votantes", method = RequestMethod.GET)
 	public ModelAndView getVotantes() {
@@ -59,10 +62,23 @@ public class VotanteController {
 
 	}
 
-//	@RequestMapping(value = "/votar", method = RequestMethod.GET)
-//	public String votar () {
-//		return "votar";
-//	}
+	/* Método criado para que o requerente, na tela em que ele votar, ele possa informar o seu voto e o método precisa também
+	* receber a sessão aqui, para computar o voto do requerente no sistema.*/
+	@RequestMapping(value = "/sessao/votar", method = RequestMethod.POST)
+	public String guardarVotoVotante (@Validated Votante votante, Sessao sessao, OpcaoVoto opcaoVoto,
+									  BindingResult result, RedirectAttributes attributes) {
+
+		votante.setIdOpcaoVoto(opcaoVoto);
+
+		if (votanteService.isVotanteNaoVotou(votante.getId(), sessao)) {
+			return "redirect:/new/opcao-voto";
+		}
+
+		opcaoVotoListVotanteService.save(opcaoVoto);
+		return "redirect:/new/opcao-voto";
+
+	}
+
 
 
 

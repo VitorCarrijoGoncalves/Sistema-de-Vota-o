@@ -44,7 +44,9 @@ public class FiscalController {
 	@RequestMapping(value = "/newfiscal", method = RequestMethod.POST)
 	public String saveFiscal (@Validated Fiscal fiscal, BindingResult result, RedirectAttributes attributes) {
 		if (result.hasErrors()) {
-			return "redirect:/newfiscal";
+			if (fiscalService.findById(fiscal.getId()) != null) {
+				return "redirect:/newfiscal";
+			}
 		}
 
 //		sessao.setDataSessao(LocalDate.now());

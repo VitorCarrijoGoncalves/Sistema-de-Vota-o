@@ -4,7 +4,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 import br.com.oab.votacaoCsec.models.Sessao;
+import org.springframework.stereotype.Service;
 
+@Service
 public interface SessaoService {
 	
 	List<Sessao> findAll();

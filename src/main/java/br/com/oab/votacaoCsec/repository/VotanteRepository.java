@@ -5,9 +5,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.com.oab.votacaoCsec.models.Votante;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+@Repository
 public interface VotanteRepository extends JpaRepository<Votante, Long> {
 
     Optional<Votante> findByCpf(String cpf);
