@@ -10,12 +10,14 @@ import javax.persistence.*;
 
 import com.danielfariati.annotation.CPF;
 import com.sun.istack.NotNull;
+
+import java.io.Serializable;
 //import lombok.Getter;
 //import lombok.Setter;
 
 @Entity
-@Table(name = "mesario")
-public class Fiscal {
+@Table(name = "fiscal")
+public class Fiscal implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

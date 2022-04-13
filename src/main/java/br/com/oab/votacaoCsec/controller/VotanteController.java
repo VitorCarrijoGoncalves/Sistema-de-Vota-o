@@ -70,6 +70,8 @@ public class VotanteController {
 
 		votante.setIdOpcaoVoto(opcaoVoto);
 
+		/* Ver em qual view devo retornar, em casos em que ocorre erro. Adaptar a validação para que ela funcione com
+		* sessões onde pode a mesma pessoa pode votar mais de uma vez nela.*/
 		if (votanteService.isVotanteNaoVotou(votante.getId(), sessao)) {
 			return "redirect:/new/opcao-voto";
 		}

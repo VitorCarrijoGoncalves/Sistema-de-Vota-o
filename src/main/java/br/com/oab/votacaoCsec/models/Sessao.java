@@ -1,5 +1,6 @@
 package br.com.oab.votacaoCsec.models;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import br.com.oab.votacaoCsec.enums.StatusSessaoEnum;
 
 @Entity
 @Table(name = "sessao")
-public class Sessao {
+public class Sessao implements Serializable {
 	
 	@Id 
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -45,6 +46,9 @@ public class Sessao {
 	@NotNull
 	@ManyToOne
 	private OpcoesVoto idOpcoesVoto;
+
+	@ManyToMany
+	private List<Votante> listVotante;
 	
 	@NotNull
 	@Column(name = "status_sessao")

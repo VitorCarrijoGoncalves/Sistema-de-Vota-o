@@ -1,11 +1,12 @@
 package br.com.oab.votacaoCsec.models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "opcao_voto")
-public class OpcaoVoto {
+public class OpcaoVoto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,9 +14,10 @@ public class OpcaoVoto {
     private long id;
 
     @ManyToOne
+    @JoinColumn(name = "opcoes_voto_id")
     private OpcoesVoto idOpcoesVoto;
 
-    @OneToMany
+    @ManyToMany
     private List<Votante> listVotante;
 
     @ManyToMany
@@ -54,5 +56,13 @@ public class OpcaoVoto {
 
     public void setNomeOpcao(String nomeOpcao) {
         this.nomeOpcao = nomeOpcao;
+    }
+
+    public List<Sessao> getListSessao() {
+        return listSessao;
+    }
+
+    public void setListSessao(List<Sessao> listSessao) {
+        this.listSessao = listSessao;
     }
 }

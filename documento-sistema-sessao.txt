@@ -1,0 +1,177 @@
+
+
+Parte 1:
+
+* Cada cliente deve logar no sistema com usuário e senha e cada um deve ter um perfil de acesso:
+- Votantes: Vejam apenas as sessões que eles participaram e a sessão disponível para ele votar 
+- Mesário: Vejam todas as sessões e também o acesso para cadastro de votantes, e novas sessões
+- Administrador: Todos os acessos citados acima e também a opção para cadastrar/deletar novos mesários
+
+* Tela Home é onde será exibido uma lista de todas as sessões realizadas 
+ordenado por data, as mais recentes em primeiro e as mais antigas por último
+
+* No menu superio, deverá conter os botões de 'Iniciar Sessão' e também o de 
+'Cadastros', para que o cliente possa cadastrar novas sessões e também os votantes 
+
+* Quando o cliente clicar no link Cadastros > Sessão, ele deverá ser redirecionado 
+para a página onde ele pode cadastrar uma nova sessão (Parte 02)
+
+* Quando o cliente clicar no link Cadastros > Votante, ele deverá ser redirecionado 
+para a página onde ele pode cadastrar uma nova sessão (Parte 03)
+
+* Quando o cliente clicar no link Cadastros > Mesário, ele deverá ser redirecionado 
+para a página onde ele pode cadastrar uma nova sessão (Parte 04)
+
+
+Parte 2:
+
+* Sistema deve trazer os seguintes campos para cadastrar uma sessão:
+- Pauta Inicial (obg)
+- Tema (obg)
+- Número do Processo
+- Data da Sessão (obg)
+- Pauta Final (obg)
+- Sala da Sessão 
+- Link da Sessão (Exclusivo para sessões online ou híbridas)
+- Lista de votantes (Lista com os votantes para esta sessão) (obg)
+- Lista de opções (Lista de opções para que cada votante, possa realizar o seu voto dependo da sua opção) (obg)
+
+* Sistema deve validar se a data da sessão não coincide com outra
+OBS: Não é obrigatório que a sessão comece apenas na data em que ela foi agendada,
+pois há casos em que a sessão pode ser antecipada, ou adiada, considerando que não há outra sessão ocorrendo 
+nesta data 
+
+* Sistema deve validar se o tema da sessão será sempre único para cada sessão cadastrada
+
+* Sistema deve ter como cadastrar as opções que o votante pode escolher para uma sessão, na tela da sessão
+
+* Sistema deve possibilitar que o fiscal escolha qual do grupo de opções de voto será utilizado para aquela sessão,
+na tela da sessão 
+
+* Sistema deve ter no final da página, um botão para que o requerente possa 
+cadastrar a nova sessão
+
+
+Parte 3:
+
+* Sistema deve trazer uma aba para que o cliente possa clicar nela, para realizar o seu cadastro,
+no que tange as opções de votação
+
+
+Parte 4:
+
+* Sistema deve trazer os seguintes campos para cadastrar um votante:
+- Nome Completo (obg)
+- CPF (obg)
+- login
+- senha
+- OAB (Exclusivo para advogados)
+- Opção do voto (obg) (Em algumas sessões o cliente pode ter um voto, em outras ele pode ter mais do que um voto)
+
+* Sistema deve ter uma tela e também gravar no banco via sistema, o voto de um votante 
+
+* Sistema deve validar se o votante X já votou para não deixar ele votar mais, caso a sessão seja apenas de um voto
+
+SELECT * FROM VOTANTE V 
+LEFT JOIN VO]]
+
+* Sistema deve validar no cadastro do Votante o seu nome e CPF, para que não seja cadastrado outro igual - OK
+
+* Sistema deve ter no final da página, um botão para que o requerente possa 
+cadastrar o novo votante
+
+-- Verificar porque não consegui cadastrar um votante via web service
+
+
+Parte 5:
+
+* Sistema deve trazer os seguintes campos para cadastrar um fiscal:
+- Nome Completo (obg)
+- CPF (obg)
+- login
+- senha
+
+* Sistema deve validar no cadastro do Fiscal o seu nome e CPF, para que não seja cadastrado outro igual
+
+* Sistema deve ter no final da página, um botão para que o requerente possa 
+cadastrar o novo fiscal
+
+
+Parte 6:
+
+* Na página Home, quando o cliente clica em 'Iniciar Sessão', deverá ir para outra tela
+
+* Nesta outra tela, o sistema deverá pedir o tema da sessão, e através deste, exibir os demais 
+dados cadastrados pela sessão, como data, link, pauta inicial e etc, mostrando estes valores 
+para o cliente 
+
+* Logo abaixo, deverá ter um botão de Confirmar, para que o cliente possa clicar e dar andamento
+para o início da sessão.
+
+
+Parte 7:
+
+Neste momento, deve-se enviar um e-mail para cada votante, para que ele acesse o sistema, através de login e senha 
+e realize o seu voto, conforme opções disponibilizadas
+
+
+Parte 8:
+
+* O votante deve acessar o sistema e clicar em sessão, onde ele será redirecionado, para a página da sessão que está acontecendo 
+naquele momento
+
+* O votante deve acessar a tela onde ele deverá escolher o seu voto, dentre as opções disponíveis
+
+
+Parte 9: 
+
+* No final da votação, o sistema deve mostrar para o fiscal, quando ele logar, e clicar no link da sessão, o resultado da votação
+para cada opção que foi disponibilizada. Exemplo:
+
+Opção A: 10 votos
+Opção B: 5 votos
+Opção C 7 votos
+
+* O sistema deve carregar também o status da Sessão, que seriam:
+- A iniciar (Fiscal ainda não iniciou a sessão)
+- Em andamento (Fiscal já iniciou a sessão, mas ninguém votou ainda)
+- Em votação (Votantes, já estão votando)
+- Finalizada (Fiscal já encerrou a sessão)
+
+
+
+
+
+* Reformular as entidades do projeto, verificando se todas as configurações do 
+hibernate estão corretas 
+** Terminar de construir as entidades no astah e fazer todos os relacionamentos do projeto,
+para depois fazer as aplicações no projeto	
+
+* Colocar regra no sistema onde algumas sessões o cliente só pode escolher uma opção de voto, e em outras,
+ele pode escolher mais do que uma opção de voto - OK
+
+* Sistema deve carregar automaticamente as sessões as quais o votante faz parte,
+quando ele logar no sistema e clicar em sessões.
+(SELECT * FROM sessao WHERE votante = ${idVotante})
+
+* Criar tela que exibe o resultado final de cada sessão selecionada
+
+* Criar método no controller que retorna para o form de resulta-final-sessao e que 
+traga os dados da sessão finalizada, como hora de início, dia e horário do fim de 
+cada sessão
+
+* Terminar de implementar o método na classe VotanteController referente a validação do
+votante para algumas sessões tendo em vista que há sessões em que ele vota mais de uma vez,
+e há outra em que ele vota apenas uma vez
+* Adaptar para casos onde a mesma pessoa pode votar em uma sessão em mais de uma vez
+* Verificar qual a view que deve-se retornar em caso de erro para este caso
+
+* Assistir vídeo aula da udemy para entender melhor sobre as divisões do hibernate 
+no spring, para o meu projeto
+
+
+
+
+
+
+

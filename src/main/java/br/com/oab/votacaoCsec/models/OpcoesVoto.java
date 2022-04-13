@@ -1,11 +1,12 @@
 package br.com.oab.votacaoCsec.models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "opcoes_voto")
-public class OpcoesVoto {
+public class OpcoesVoto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -108,7 +108,8 @@ public class SessaoController {
 
 	/* Método criado para que quando o votante autenticar no sistema, e clicar na opção de 'Sessao', ele possa
 	* ser redirecionado para uma página, onde ele possa ver as sessões dele disponíveis para ele votar e também
-	* um histórico de sessões que ele já votou. */
+	* um histórico de sessões que ele já votou.
+	* SELECT * FROM sessao WHERE votante = ${idVotante} */
 	@RequestMapping(value = "/sessao/votante", method = RequestMethod.POST)
 	public String getSessaoVotante (@Validated Sessao sessao, @RequestParam Long idVotante) {
 

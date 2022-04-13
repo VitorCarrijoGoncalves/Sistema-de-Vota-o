@@ -5,12 +5,15 @@ import javax.persistence.*;
 import com.danielfariati.annotation.CPF;
 import com.sun.istack.NotNull;
 
+import java.io.Serializable;
+import java.util.List;
+
 //import lombok.Getter;
 //import lombok.Setter;
 
 @Entity
 @Table(name = "votante")
-public class Votante {
+public class Votante implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,8 +38,11 @@ public class Votante {
 	private String cpf;
 
 	@NotNull
-	@ManyToOne
-	private OpcaoVoto idOpcaoVoto;
+	@ManyToMany
+	private List<OpcaoVoto> listOpcaoVoto;
+
+	@ManyToMany
+	private List<Sessao> listSessao;
 
 	public Long getId() {
 		return id;
@@ -78,11 +84,19 @@ public class Votante {
 		this.cpf = cpf;
 	}
 
-	public OpcaoVoto getIdOpcaoVoto() {
-		return idOpcaoVoto;
+	public List<OpcaoVoto> getListOpcaoVoto() {
+		return listOpcaoVoto;
 	}
 
-	public void setIdOpcaoVoto(OpcaoVoto idOpcaoVoto) {
-		this.idOpcaoVoto = idOpcaoVoto;
+	public void setListOpcaoVoto(List<OpcaoVoto> listOpcaoVoto) {
+		this.listOpcaoVoto = listOpcaoVoto;
+	}
+
+	public List<Sessao> getListSessao() {
+		return listSessao;
+	}
+
+	public void setListSessao(List<Sessao> listSessao) {
+		this.listSessao = listSessao;
 	}
 }
